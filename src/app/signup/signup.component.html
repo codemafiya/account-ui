@@ -1,0 +1,114 @@
+<div class="element bg-img" style="height: 100vh; ">
+    <div class="content">
+        <br>
+        <br>
+        <br>
+        <!-- <div class="content-center">
+            <div class="container">
+                <div class="title-brand">
+                    <div class="angular-logo">
+                        <img src="assets/img/02.svg" style="width: 1400px; height: 80px;" alt="Error Loading Image">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <br>
+
+        <form id="register-form" action="javascript:;" method="post">
+            <h2 class="login-title">DOACCOUNT SIGNUP</h2>
+            <div class="row">
+                <!-- <div class="col-5">
+                    <h6>Instructions:</h6>
+                    <ul>
+                        <li>
+                            There are three options to signup. You can login via OTP, Google Account, Facebook Account.
+                        </li>
+                        <li>
+                            After Signup, you have to create one of the account to work upon.
+                        </li>
+                        <li>
+                            Users can change their password.
+                        </li>
+                        <li>
+                            Password should contain at least 6 characters with one number and one ascii character.
+                        </li>
+                    </ul>
+                </div>
+                <div class="vl"></div> -->
+                <div class="col-3"></div>
+                <div class="col-6 text-center">
+                    <br>
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" [(ngModel)]="email">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+                    </div>
+                    <div class="form-group text-left">
+                        <label class="ui-checkbox ui-checkbox-info">
+                            <input type="checkbox" name="agree">
+                            <span class="input-span"></span>I agree the terms and policy</label>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-info btn-block" (click)="signup()" type="submit">Sign up</button>
+                    </div>
+                    <!-- <div class="social-auth-hr">
+                        <span>Or Sign up with</span>
+                        <div class="text-center social-auth m-b-20">
+                            <a class="btn btn-social-icon btn-facebook m-r-5" (click)="socialSignIn('facebook')"><i
+                                    class="fa fa-facebook"></i></a>
+                            <a class="btn btn-social-icon btn-google m-r-5" (click)="socialSignIn('google')"><i
+                                    class="fa fa-google-plus"></i></a>
+                           </div>
+                    </div>
+                    <br> -->
+                    <br>
+                    <div class="text-center">Already a member?
+                        <a class="color-blue" routerLink="/login">Login here</a>
+                    </div>
+                </div>
+                <div class="col-3"></div>
+
+
+            </div>
+
+        </form>
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">OTP Verification</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <input class="form-control" type="pin" name="pin" placeholder="Enter Pin" autocomplete="off" [(ngModel)]="pin">
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <button style="height: 30px;width: 100px;" class="btn btn-info" (click)="Register()" type="submit">Verify</button>
+                        <button style="height: 30px;width: 100px;" class="btn btn-warning" (click)="verify()" type="submit">Resend OTP</button>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

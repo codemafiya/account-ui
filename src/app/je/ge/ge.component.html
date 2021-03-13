@@ -1,0 +1,204 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Journal Entry</div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-7-1" data-toggle="tab"><i class="fa fa-bar-chart"
+                                    aria-hidden="true"></i>&nbsp;Manual Entry</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div class="tab-pane fade show active" id="tab-7-1">
+                            <br>
+
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <hr style="color: brown;">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h6 style="color: brown;">Header</h6>
+                                </div>
+                                <div class="col-4">
+                                    <hr style="color: brown;">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Enter Description :</h6>
+                                </div>
+                                <div class="col-4">
+                                    <textarea [(ngModel)]="jrnl['jrnl_desc']" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Journal Type :</h6>
+                                </div>
+                                <div class="col-4">
+                                    <h6>Manual</h6>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Journal Category :</h6>
+                                </div>
+                                <div class="col-4">
+                                    <h6>ACTUAL</h6>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Accounting Date :</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input type="date" class="form-control" [(ngModel)]="jrnl['acct_dt']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6>Select Party :</h6>
+                                </div>
+                                <div class="col-4">
+                                    <ng-select [items]="allParty" bindLabel="party_desc" bindValue="id" [multiple]="false" placeholder="" [(ngModel)]="jrnl['party_id']" [selectableGroup]="false" [selectableGroupAsModel]="false" [closeOnSelect]="true" name="prod" (change)="changeParty()">
+                                    </ng-select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <hr style="color: brown;">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h6 style="color: brown;">Line</h6>
+
+                                </div>
+                                <div class="col-4">
+                                    <hr style="color: brown;">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <button class="btn btn-primary" (click)="addLine()"><i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                            <br>
+                            <table id='tbl'>
+
+                                <tr>
+                                    <th style="width: 8%;">
+                                        S No.
+                                    </th>
+                                    <th style="width: 18%;">
+                                        Description
+                                    </th>
+                                    <th style="width: 14%;">
+                                        Account
+                                    </th>
+                                    <th style="width: 14%;">
+                                        DB/CR
+                                    </th>
+                                    <th style="width: 14%;">
+                                        Txn Amt
+                                    </th>
+                                    <th style="width: 14%;">
+                                        Event ID
+                                    </th>
+                                    <th style="width: 14%;">
+                                        Event Type
+                                    </th>
+                                    <th style="width: 4%;">
+                                        Action
+                                    </th>
+
+
+
+                                </tr>
+                                <br>
+                                <tr *ngFor="let ln of jrnl['lines']; let i = index;">
+
+                                    <td>
+
+                                        <input class="form-control" [(ngModel)]="ln['jrnl_line_id']">
+                                    </td>
+                                    <td>
+
+
+                                        <textarea class="form-control" [(ngModel)]="ln['jrnl_line_desc']"></textarea>
+
+
+                                    </td>
+
+                                    <td class="text-center">
+
+                                        <!-- <input class="form-control" [(ngModel)]="ln['acct_num']"> -->
+                                        <ng-select [items]="allAccounts" bindLabel="acct_desc" bindValue="lvl4_cd" [multiple]="false" placeholder="" [(ngModel)]="ln['acct_num']" [selectableGroup]="false" [selectableGroupAsModel]="false" [closeOnSelect]="true" name="prod">
+                                        </ng-select>
+
+                                    </td>
+                                    <td>
+
+                                        <input class="form-control" [(ngModel)]="ln['db_cr_ind']">
+
+                                    </td>
+                                    <td>
+
+                                        <input type="number" class="form-control" [(ngModel)]="ln['txn_amt']">
+
+                                    </td>
+                                    <td>
+
+                                        <input class="form-control" [(ngModel)]="ln['event_id']">
+
+                                    </td>
+                                    <td>
+                                        <input class="form-control" [(ngModel)]="ln['event_type']">
+
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" (click)="deleteLine(i)"><i class="fa fa-trash" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+
+
+                                </tr>
+
+                                <br>
+
+
+                            </table>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="submit()">Submit</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner>Loading....</ngx-spinner>

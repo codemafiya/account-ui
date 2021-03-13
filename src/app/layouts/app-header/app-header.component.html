@@ -1,0 +1,87 @@
+<div class="page-brand">
+    <a class="link" routerLink="/index">
+        <span class="brand">
+          
+            <img src="./assets/img/acc.png" class="img-circle"
+            style="width: 50px;height: 50px;margin-left: 70px;margin-top: 5px;" />
+        </span>
+        <span class="brand-mini">DA</span>
+    </a>
+</div>
+
+<div class="flexbox flex-1">
+    <!-- START TOP-LEFT TOOLBAR-->
+    <ul class="nav navbar-toolbar">
+        <li>
+            <a class="nav-link sidebar-toggler js-sidebar-toggler"><i class="ti-menu"></i></a>
+        </li>
+        <li>
+            <form class="navbar-search" action="javascript:;">
+                <div class="rel">
+                    <span class="search-icon"><i class="ti-search"></i></span>
+                    <input class="form-control" placeholder="Search here...">
+                </div>
+            </form>
+        </li>
+
+    </ul>
+    <!-- END TOP-LEFT TOOLBAR-->
+    <!-- <ul style="list-style-type:none;">
+        <li>
+            <h6>{{account.acct_name}}</h6>
+        </li>
+    </ul> -->
+
+    <!-- START TOP-RIGHT TOOLBAR-->
+    <ul class="nav navbar-toolbar" style="z-index: 1;">
+
+        <li class="dropdown dropdown-inbox">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope-o"></i>
+                <span class="badge badge-primary envelope-badge">{{this.mainService.taskcount}}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
+                <li class="dropdown-menu-header">
+                    <div>
+                        <span><strong>{{this.mainService.taskcount}} New</strong> Messages</span>
+                        <a class="pull-right" [routerLink]="['/approve']" routerLinkActive="router-link-active">view
+                            all</a>
+                    </div>
+                </li>
+
+            </ul>
+        </li>
+
+        <li class="dropdown dropdown-notification">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"></i></a>
+            <!-- <span class="notify-signal"></span> -->
+            <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
+                <li class="dropdown-menu-header">
+                    <div>
+
+                        <span><strong>0 New</strong> Notifications</span>
+                        <a class="pull-right" href="javascript:;">view all</a>
+                    </div>
+                </li>
+                <li class="list-group list-group-divider scroller" data-height="240px" data-color="#71808f">
+                    <div>
+
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown dropdown-user">
+            <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
+                <img [src]="mainService.profileImageUrl" class="img-circle" width="53px" />
+                <span></span>{{profile.name}}</a>
+            <ul class="dropdown-menu dropdown-menu-left" style="z-index: 2;">
+                <a class="dropdown-item" [routerLink]="['/profile']" routerLinkActive="router-link-active"><i
+                        class="fa fa-user"></i>Profile</a>
+                <a class="dropdown-item" [routerLink]="['/account/account-info']" routerLinkActive="router-link-active"><i class="fa fa-support"></i>Account</a>
+                <li class="dropdown-divider"></li>
+                <a class="dropdown-item" [routerLink]="['/login']" routerLinkActive="router-link-active"><i
+                        class="fa fa-power-off"></i>Logout</a>
+            </ul>
+        </li>
+    </ul>
+    <!-- END TOP-RIGHT TOOLBAR-->
+</div>

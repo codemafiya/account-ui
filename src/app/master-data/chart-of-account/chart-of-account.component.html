@@ -1,0 +1,263 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Products/Services Management</div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-7-1" data-toggle="tab"><i class="fa fa-bar-chart"
+                                    aria-hidden="true"></i>&nbsp;All Chart Of Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-2" data-toggle="tab"><i
+                                    class="fa fa-plus-circle" aria-hidden="true"></i> Create Chart Of Account
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-3" data-toggle="tab"><i
+                                    class="ti-settings"> </i> Update
+                                Chart Of Account
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div class="tab-pane fade show active" id="tab-7-1">
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <mat-form-field style="margin-left: 2%">
+                                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="example-container">
+
+                                <table mat-table [dataSource]="datasource" matSort>
+
+
+
+                                    <ng-container matColumnDef="lvl1_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 1 Code
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl1_cd}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="lvl1_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 1 Desc
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl1_desc}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="lvl2_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 2 Code
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl2_cd}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="lvl2_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 2 Desc
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl2_desc}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="lvl3_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 3 Code
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl3_cd}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="lvl3_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 3 Desc
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl3_desc}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="lvl4_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 4 Code
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl4_cd}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="lvl4_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Level 4 Desc
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.lvl4_desc}} </td>
+                                    </ng-container>
+
+
+                                    <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Action</th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+
+                                            <button class="btn btn-info" (click)="openUpdate(element)">Update</button>&nbsp;&nbsp;
+                                            <button class="btn btn-danger" (click)="deleteChartOfAccount(element)">Delete</button>&nbsp;&nbsp;
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-7-2">
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 1 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl1_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 1 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl1_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 2 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl2_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 2 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl2_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 3 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl3_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 3 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl3_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 4 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl4_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 4 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl4_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="createAccount()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-7-3">
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 1 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl1_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 1 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl1_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 2 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl2_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 2 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl2_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 3 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl3_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 3 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl3_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 4 Code</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl4_cd']">
+                                </div>
+                                <div class="col-3 text-right">
+                                    <h6>Enter Level 4 Desc</h6>
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control" [(ngModel)]="accObj['lvl4_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="updateAccount()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner>Loading....</ngx-spinner>

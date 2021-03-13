@@ -1,0 +1,146 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Products/Services Management</div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-7-1" data-toggle="tab"><i class="fa fa-bar-chart"
+                                    aria-hidden="true"></i>&nbsp;All Products/Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-2" data-toggle="tab"><i
+                                    class="fa fa-plus-circle" aria-hidden="true"></i> Create Product/Service
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-3" data-toggle="tab"><i
+                                    class="ti-settings"> </i> Update
+                                Product/Service
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div class="tab-pane fade show active" id="tab-7-1">
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <mat-form-field style="margin-left: 2%">
+                                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="example-container">
+
+                                <table mat-table [dataSource]="datasource" matSort>
+
+
+
+                                    <ng-container matColumnDef="prod_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Product Code
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.prod_cd}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="prod_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Product Description
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.prod_desc}} </td>
+                                    </ng-container>
+
+
+
+
+                                    <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Action</th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+
+                                            <button class="btn btn-info" (click)="openUpdate(element)">Update</button>&nbsp;&nbsp;
+                                            <button class="btn btn-danger" (click)="deleteProduct(element)">Delete</button>&nbsp;&nbsp;
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-7-2">
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Product Code</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="prodObj['prod_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Product Description</h6>
+                                </div>
+                                <div class="col-4">
+                                    <textarea class="form-control" [(ngModel)]="prodObj['prod_desc']"></textarea>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="createProduct()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-7-3">
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Product Code</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="prodObj['prod_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Product Description</h6>
+                                </div>
+                                <div class="col-4">
+                                    <textarea class="form-control" [(ngModel)]="prodObj['prod_desc']"></textarea>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="updateProduct()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner>Loading....</ngx-spinner>

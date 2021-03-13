@@ -1,0 +1,88 @@
+.page-header {
+    background-position: center center;
+    background-size: cover;
+    min-height: 100vh !important;
+    max-height: 999px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.title-brand {
+    max-width: 730px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    color: #FFFFFF;
+    display: block;
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.card-body {
+    border-top: 1px rgb(223, 220, 220) solid;
+}
+
+.card-body:hover {
+    background-color: rgb(241, 239, 239);
+    ;
+}
+
+.card-header {
+    font-size: 18px;
+    border-bottom: none;
+    background-color: white;
+    font-family: Roboto;
+    font-size: 18px;
+}
+
+.card-text {
+    cursor: pointer;
+}
+
+.card-header {
+    color: #1a73e8;
+}
+
+#modal {
+    max-height: 520px;
+    overflow: auto;
+}
+
+/* tr:nth-child(even) {
+    background-color: rgb(204, 204, 221);
+} */
+
+th {
+    text-align: center;
+}
+
+tr {
+    text-align: center;
+}

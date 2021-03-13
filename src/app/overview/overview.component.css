@@ -1,0 +1,66 @@
+tr:nth-child(even) {
+    background-color: rgb(204, 204, 221);
+}
+
+th {
+    text-align: center;
+}
+
+.row1:nth-child(odd) {
+    margin-top: 10px;
+}
+
+.row1:nth-child(even) {
+    margin-top: 10px;
+}
+
+h6 {
+    margin-top: 10px;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3498db;
+    border-color: #2c81ba;
+    width: 150px;
+    height: 50px;
+}
+
+.page-content {
+    background-position: center center;
+    background-size: cover;
+    min-height: 100vh !important;
+    max-height: 999px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+
+/* .container-fluid {
+    margin-top: 85px;
+} */
+
+.container {
+    max-width: 60%;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bg-img {
+    min-height: 100vh;
+    width: 100%;
+    background: url('../../assets/img/n.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

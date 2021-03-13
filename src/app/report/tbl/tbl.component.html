@@ -1,0 +1,124 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">TRIAL BALANCE</div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-7-1" data-toggle="tab"><i class="fa fa-bar-chart"
+                                    aria-hidden="true"></i>&nbsp;Trial Balance 1</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div class="tab-pane fade show active" id="tab-7-1">
+                            <br>
+
+                            <table class="table table-bordered table-striped" id='tbl'>
+
+                                <tr>
+                                    <th style="width: 8%;">
+                                        S No.
+                                    </th>
+                                    <th style="width: 18%;">
+                                        Account Type
+                                    </th>
+                                    <th style="width: 14%;">
+                                        Account
+                                    </th>
+                                    <th style="width: 14%;">
+                                        DB
+                                    </th>
+                                    <th style="width: 14%;">
+                                        CR
+                                    </th>
+
+
+
+
+                                </tr>
+                                <br>
+                                <tr *ngFor="let ln of tbl; let i = index;">
+
+                                    <td>
+                                        <h6>{{i+1}}</h6>
+                                    </td>
+                                    <td>
+
+                                        <h6>{{ln['lvl2_cd']}} - {{ln['lvl2_desc']}}</h6>
+
+
+                                    </td>
+
+                                    <td>
+
+                                        <h6>{{ln['lvl4_cd']}} - {{ln['lvl4_desc']}}</h6>
+
+                                    </td>
+                                    <td class="text-right">
+
+                                        {{ln['db']}}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ln['cr']}}
+
+
+                                    </td>
+
+
+
+                                </tr>
+                                <tr>
+
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+
+
+                                    </td>
+
+                                    <td>
+
+                                        <h5>TOTAL</h5>
+
+                                    </td>
+                                    <td class="text-right">
+
+                                        <h6>{{totaldb}}</h6>
+                                    </td>
+                                    <td class="text-right">
+                                        <h6>{{totalcr}}</h6>
+
+
+                                    </td>
+
+
+
+                                </tr>
+
+
+
+
+                            </table>
+
+                        </div>
+
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner>Loading....</ngx-spinner>

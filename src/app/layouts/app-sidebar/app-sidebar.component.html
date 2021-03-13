@@ -1,0 +1,195 @@
+<div id="sidebar-collapse">
+    <div class="admin-block d-flex">
+        <div>
+            <img src="./assets/img/h.png" class="img-circle" width="53px" />
+        </div>
+        <div class="admin-info">
+            <div class="font-strong">Rajan</div><small>Controller</small></div>
+    </div>
+
+    <ul class="side-menu metismenu">
+        <li>
+            <a routerLinkActive="active" routerLink="/index"><i class="sidebar-item-icon fa fa-th-large"></i>
+                <span class="nav-label">Dashboard</span>
+            </a>
+        </li>
+
+        <li routerLinkActive="active">
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-bar-chart">
+
+                </i>
+                <span class="nav-label">Report</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse" routerLinkActive="in">
+
+                <li>
+                    <a routerLink="/report/tbl" routerLinkActive="active">Trial Balance</a>
+                </li>
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Ledger Report</a>
+                </li>
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Contract Wise Report</a>
+                </li>
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Party Wise Report</a>
+                </li>
+                <li>
+                    <a routerLink="#" routerLinkActive="active">GST Report</a>
+                </li>
+            </ul>
+        </li>
+        <li routerLinkActive="active">
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-file">
+
+                </i>
+                <span class="nav-label">Journal Entry</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse" routerLinkActive="in">
+
+                <li>
+                    <a routerLink="/entry/contra" routerLinkActive="active">Contra Entry</a>
+                </li>
+                <li>
+                    <a routerLink="/entry/ge" routerLinkActive="active">Generic Entry</a>
+                </li>
+
+            </ul>
+        </li>
+        <li routerLinkActive="active">
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-cc-amex">
+
+                </i>
+                <span class="nav-label">Accounts Payable</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse" routerLinkActive="in">
+
+                <li>
+                    <a routerLink="/ap/bill" routerLinkActive="active">Bill</a>
+                </li>
+                <li>
+                    <a routerLink="/ap/bp" routerLinkActive="active">Bill Payment</a>
+                </li>
+
+            </ul>
+        </li>
+        <li routerLinkActive="active">
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fas fa-money-bill-alt	">
+
+                </i>
+                <span class="nav-label">Accounts Recievables</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse" routerLinkActive="in">
+
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Demand</a>
+                </li>
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Challan</a>
+                </li>
+
+            </ul>
+        </li>
+        <li routerLinkActive="active">
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-money">
+
+                </i>
+                <span class="nav-label">Budget</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse" routerLinkActive="in">
+
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Creation</a>
+                </li>
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Allocation</a>
+                </li>
+
+            </ul>
+        </li>
+        <li routerLinkActive="active">
+            <a href="javascript:;">
+                <i class="sidebar-item-icon fa fa-users">
+
+                </i>
+                <span class="nav-label">Party</span>
+                <i class="fa fa-angle-left arrow"></i>
+            </a>
+            <ul class="nav-2-level collapse" routerLinkActive="in">
+
+                <li>
+                    <a routerLink="/party" routerLinkActive="active">Party</a>
+                </li>
+                <li>
+                    <a routerLink="#" routerLinkActive="active">Contract</a>
+                </li>
+
+            </ul>
+        </li>
+        <li routerLinkActive="active">
+            <a href="javascript:;"><i class="sidebar-item-icon fa fa-database"></i>
+                <span class="nav-label">Administration</span><i class="fa fa-angle-left arrow"></i></a>
+            <ul class="nav-2-level collapse" routerLinkActive="in">
+                <li>
+                    <a href="javascript:;">
+                        <span class="nav-label">Master Data</span><i class="fa fa-angle-left arrow"></i></a>
+                    <ul class="nav-3-level collapse">
+
+                        <li>
+                            <a routerLink="/master-data/gst" routerLinkActive="active">GST</a>
+                        </li>
+                        <li>
+                            <a routerLink="/master-data/ded" routerLinkActive="active">
+                            Deductions
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/master-data/allowances" routerLinkActive="active">
+                            Allowances
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/master-data/products" routerLinkActive="active">Products/Services
+                                </a>
+                        </li>
+
+                        <li>
+                            <a routerLink="/master-data/chartofaccount" routerLinkActive="active">
+                            Chart Of Account
+                            </a>
+                        </li>
+
+
+
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;">
+                        <span class="nav-label">User</span><i class="fa fa-angle-left arrow"></i></a>
+                    <ul class="nav-3-level collapse">
+                        <li>
+                            <a routerLink="/administration/user-mgmt/assign-role" routerLinkActive="active">Assign
+                                Role</a>
+                        </li>
+                        <li>
+                            <a routerLink="/administration/user-mgmt/users" routerLinkActive="active">Users</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

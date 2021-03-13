@@ -1,0 +1,287 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Bank Payments</div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-7-1" data-toggle="tab"><i class="fa fa-bar-chart"
+                                    aria-hidden="true"></i>&nbsp;All Bank Payments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-2" data-toggle="tab"><i
+                                    class="fa fa-plus-circle" aria-hidden="true"></i> Create Bank Payment
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-3" data-toggle="tab"><i
+                                    class="ti-settings"> </i> Update
+                                Bank Payment
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div class="tab-pane fade show active" id="tab-7-1">
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <mat-form-field style="margin-left: 2%">
+                                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="example-container">
+
+                                <table mat-table [dataSource]="datasource" matSort>
+
+
+
+                                    <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>BP Id
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.id}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="bp_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>BP Description
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.bp_desc}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="bp_dt">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>BP Date
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.bp_dt.split('T')[0]}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="party_id">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Party
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{partyObjInfo[element.party_id]['party_legal_name']}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="acct_no">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Account No
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{partyObjInfo[element.party_id]['acct_no']}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="bank">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Bank
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{partyObjInfo[element.party_id]['bank']}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="ifsc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>IFSC Code
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{partyObjInfo[element.party_id]['ifsc']}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="pan_no">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>PAN NO
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{partyObjInfo[element.party_id]['pan_no']}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="party_phone_no">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Phone No
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{partyObjInfo[element.party_id]['party_phone_no']}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="bp_amt">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header> Amount
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.bp_amt}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="org_bank">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header> Organisation Bank
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.org_bank}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Status
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.status}} </td>
+                                    </ng-container>
+
+
+
+
+                                    <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Action</th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            <!-- <button class="btn btn-primary" (click)="print(element)">Print</button>&nbsp;&nbsp; -->
+
+                                            <button class="btn btn-info" (click)="openUpdate(element)">Update</button>&nbsp;&nbsp;
+                                            <button class="btn btn-danger" (click)="deleteBp(element)">Delete</button>&nbsp;&nbsp;
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-7-2">
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <hr style="color: brown;">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h6 style="color: brown;">Vendor Details</h6>
+                                </div>
+                                <div class="col-4">
+                                    <hr style="color: brown;">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <h6>Select Party :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <ng-select [items]="allParty" bindLabel="party_desc" bindValue="id" [multiple]="false" placeholder="" [(ngModel)]="bpObj['party_id']" [selectableGroup]="false" [selectableGroupAsModel]="false" [closeOnSelect]="true" name="prod" (change)="changeParty()">
+                                    </ng-select>
+                                </div>
+
+                            </div>
+
+                            <br>
+
+
+                            <div class="row">
+                                <div class="col-2 text-right">
+                                    <h6>Enter Remark :</h6>
+                                </div>
+                                <div class="col-8 text-right">
+                                    <textarea class="form-control" [(ngModel)]="bpObj['remark']"></textarea>
+                                </div>
+
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="searchLiability()">Submit</button>
+                                </div>
+                            </div>
+                            <br>
+                            <table id="dtBasicExample1" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th class="th-sm">
+                                            SN.
+                                        </th>
+                                        <th class="th-sm">Name
+
+                                        </th>
+
+
+
+                                        <th class="th-sm">Amount
+
+                                        </th>
+                                        <th class="th-sm">Action
+
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let ob of rows; let i = index">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td>{{partyObjInfo[ob['party_id']]['party_legal_name']}}</td>
+                                        <td>{{ob['balance']}}</td>
+                                        <td><button class="btn btn-danger" (click)="deleteLine(i)">Delete</button></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="tab-pane fade" id="tab-7-3">
+
+
+
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner>Loading....</ngx-spinner>
+<div class="modal fade" id="m" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Select BP</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="th-sm">Select
+
+                            </th>
+                            <th class="th-sm">Name
+
+                            </th>
+
+
+
+                            <th class="th-sm">Amount
+
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ob of allLiability">
+                            <td>
+                                <input type="checkbox" class="form-control" [(ngModel)]="ob['checked']">
+                            </td>
+                            <td>{{partyObjInfo[ob['party_id']]['party_legal_name']}}</td>
+                            <td>{{ob['balance']}}</td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="selectedRows()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

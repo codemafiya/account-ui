@@ -1,0 +1,151 @@
+<div class="element bg-img" style="height: 100vh; ">
+    <div class="content">
+        <br>
+        <br>
+        <br>
+
+        <br>
+
+        <form id="register-form" action="javascript:;" method="post">
+            <div class="row ">
+                <div class="col-12 text-center ">
+                    <h4>DOACCOUNT LOGIN</h4>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-12 text-right ">
+                    <a class="color-blue" (click)="forgetPassWord()" type="submit">Forgot Password ?</a>
+                </div>
+            </div>
+            <div class="row">
+
+
+                <div class="col-6">
+                    <br>
+                    <div class="text-center">
+                        <h6> LOGIN WITH MOBILE NO</h6>
+                    </div>
+                    <br>
+
+                    <div class="form-group" class="row">
+                        <div class="col-3">
+                            Enter Mobile Number:
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" type="number" name="mobile_number" placeholder="Enter Mobile Number" autocomplete="off" [(ngModel)]="mobile_number">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-info " (click)="sendOtp()" type="submit">Send OTP</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" class="row" *ngIf="otp_flag">
+                        <div class="col-3">
+                            Enter Otp:
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" id="text" type="password" name="otp" placeholder="OTP" [(ngModel)]="otp">
+                        </div>
+                        <div class="col-3">
+                            <button class="btn btn-info " (click)="resendOtp()" type="submit">Resend
+                                OTP</button>
+                        </div>
+                    </div>
+
+                    <br>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-info btn-block" (click)="LoginWithOtp()" type="submit">Login</button>
+                    </div>
+
+
+                </div>
+                <div class="vl"></div>
+                <div class="col-5">
+                    <br>
+
+                    <div class="text-center">
+                        <h6> LOGIN WITH EMAIL</h6>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" placeholder="Email" autocomplete="off" [(ngModel)]="email">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" id="password" type="password" name="password" placeholder="Password" [(ngModel)]="password">
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-info btn-block" (click)="Login()" type="submit">Login</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12 text-center">
+
+                    <div class="text-center">A New Member?
+                        <a class="color-blue" routerLink="/signup">Signup here</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+<div class="modal" id="forget">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"> Forgot Password:</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-4 text-right">
+                        Enter Phone Number:
+                    </div>
+                    <div class="col-6 text-center">
+                        <input class="form-control" type="number" [(ngModel)]="phone_no" />
+                    </div>
+
+                </div>
+                <br *ngIf="your_password_flag">
+                <div class="row" *ngIf="your_password_flag">
+
+                    <div class="col-4 text-right">
+                        Your Password:
+                    </div>
+                    <div class="col-6 text-center">
+                        {{your_password}}
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-primary" (click)="SubmitForgetPassword()">Submit</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="close()" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

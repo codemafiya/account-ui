@@ -1,0 +1,452 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Bill</div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-7-1" data-toggle="tab"><i class="fa fa-bar-chart"
+                                    aria-hidden="true"></i>&nbsp;All Bill</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-2" data-toggle="tab"><i
+                                    class="fa fa-plus-circle" aria-hidden="true"></i> Create Bill
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-3" data-toggle="tab"><i
+                                    class="ti-settings"> </i> Update
+                                Bill
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div class="tab-pane fade show active" id="tab-7-1">
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <mat-form-field style="margin-left: 2%">
+                                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="example-container">
+
+                                <table mat-table [dataSource]="datasource" matSort>
+
+
+
+                                    <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Bill Id
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.id}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="bill_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Bill Description
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.bill_desc}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="bill_dt">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Bill Date
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.bill_dt.split('T')[0]}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="party_id">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Party ID
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{partyObjInfo[element.party_id]}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="bill_amt">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Bill Amount
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.bill_amt}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Status
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.status}} </td>
+                                    </ng-container>
+
+
+
+
+                                    <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Action</th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            <button class="btn btn-primary" (click)="print(element)">Print</button>&nbsp;&nbsp;
+
+                                            <button class="btn btn-info" (click)="openUpdate(element)">Update</button>&nbsp;&nbsp;
+                                            <button class="btn btn-danger" (click)="deleteBill(element)">Delete</button>&nbsp;&nbsp;
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-7-2">
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <hr style="color: brown;">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h6 style="color: brown;">Vendor Details</h6>
+                                </div>
+                                <div class="col-4">
+                                    <hr style="color: brown;">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <h6>Select Party :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <ng-select [items]="allParty" bindLabel="party_desc" bindValue="id" [multiple]="false" placeholder="" [(ngModel)]="billObj['party_id']" [selectableGroup]="false" [selectableGroupAsModel]="false" [closeOnSelect]="true" name="prod" (change)="changeParty()">
+                                    </ng-select>
+                                </div>
+                                <div class="col-3">
+                                    <h6>Phone No :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['party_phone_no']}}</h6>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-3">
+                                    <h6>Email :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['party_email']}}</h6>
+
+                                </div>
+                                <div class="col-3">
+                                    <h6>GST No :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['party_gstin_no']}}</h6>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+
+                                <div class="col-3">
+                                    <h6>Address :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['per_addr']}}</h6>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <hr style="color: brown;">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h6 style="color: brown;">Products/Services Details</h6>
+                                </div>
+                                <div class="col-4">
+                                    <hr style="color: brown;">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-2 text-right">
+                                    <h6>Enter Remark :</h6>
+                                </div>
+                                <div class="col-8 text-right">
+                                    <textarea class="form-control" [(ngModel)]="billObj['remark']"></textarea>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <button class="btn btn-primary" (click)="addLine()"><i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-2">
+                                    <h6>Select Product</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Enter Quantity</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Price</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>SubTotal</h6>
+                                </div>
+                                <div class="col-1">
+                                    <h6>GST</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Total</h6>
+                                </div>
+                                <div class="col-1">
+                                    <h6>Action</h6>
+                                </div>
+                            </div>
+                            <br>
+                            <div *ngFor="let ob of billObj['lines']; let i = index" class="row">
+                                <div class="col-2">
+                                    <ng-select [items]="allProds" bindLabel="prod_desc" bindValue="prod_cd" [multiple]="false" placeholder="" [(ngModel)]="ob['prod_cd']" [selectableGroup]="false" [selectableGroupAsModel]="false" [closeOnSelect]="true" name="prod" (change)="changeLine(i)">
+                                    </ng-select>
+                                    <!-- <input class="form-control" [(ngModel)]="ob['prod_cd']"> -->
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" (change)="changeLine(i)" class="form-control" [(ngModel)]="ob['quantity']">
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" (change)="changeLine(i)" class="form-control" [(ngModel)]="ob['price']">
+                                </div>
+                                <div class="col-2 text-right">
+                                    <h6>{{ob['subtotal']}}</h6>
+                                    <!-- <input class="form-control" [(ngModel)]="ob['subtotal']"> -->
+                                </div>
+                                <div class="col-1">
+                                    <input class="form-control" type="number" (change)="changeLine(i)" [(ngModel)]="ob['gst']">
+                                </div>
+                                <div class="col-2 text-right">
+                                    <h6>{{ob['total']}}</h6>
+
+                                    <!-- <input class="form-control" [(ngModel)]="ob['total']"> -->
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-danger" (click)="deleteLine(i)"><i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <br>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Notes :</h5>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button class="btn btn-primary" (click)="addNote()"><i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div *ngFor="let ob of billObj['notes']; let i = index" class="row">
+                                <div class="col-8">
+                                    <textarea class="form-control" [(ngModel)]="ob['note']"></textarea>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <button class="btn btn-danger" (click)="deleteNote(i)"><i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+
+                                <br>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="createBill()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-7-3">
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <hr style="color: brown;">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h6 style="color: brown;">Vendor Details</h6>
+                                </div>
+                                <div class="col-4">
+                                    <hr style="color: brown;">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <h6>Select Party :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <ng-select [items]="allParty" bindLabel="party_desc" bindValue="id" [multiple]="false" placeholder="" [(ngModel)]="billObj['party_id']" [selectableGroup]="false" [selectableGroupAsModel]="false" [closeOnSelect]="true" name="prod" (change)="changeParty()">
+                                    </ng-select>
+                                </div>
+                                <div class="col-3">
+                                    <h6>Phone No :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['party_phone_no']}}</h6>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-3">
+                                    <h6>Email :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['party_email']}}</h6>
+
+                                </div>
+                                <div class="col-3">
+                                    <h6>GST No :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['party_gstin_no']}}</h6>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+
+                                <div class="col-3">
+                                    <h6>Address :</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h6>{{partyObj['per_addr']}}</h6>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <hr style="color: brown;">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h6 style="color: brown;">Products/Services Details</h6>
+                                </div>
+                                <div class="col-4">
+                                    <hr style="color: brown;">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-2 text-right">
+                                    <h6>Enter Remark :</h6>
+                                </div>
+                                <div class="col-8 text-right">
+                                    <textarea class="form-control" [(ngModel)]="billObj['remark']"></textarea>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <button class="btn btn-primary" (click)="addLine()"><i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-2">
+                                    <h6>Select Product</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Enter Quantity</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Price</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>SubTotal</h6>
+                                </div>
+                                <div class="col-1">
+                                    <h6>GST</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6>Total</h6>
+                                </div>
+                                <div class="col-1">
+                                    <h6>Action</h6>
+                                </div>
+                            </div>
+                            <br>
+                            <div *ngFor="let ob of billObj['lines']; let i = index" class="row">
+                                <div class="col-2">
+                                    <ng-select [items]="allProds" bindLabel="prod_desc" bindValue="prod_cd" [multiple]="false" placeholder="" [(ngModel)]="ob['prod_cd']" [selectableGroup]="false" [selectableGroupAsModel]="false" [closeOnSelect]="true" name="prod" (change)="changeLine(i)">
+                                    </ng-select>
+                                    <!-- <input class="form-control" [(ngModel)]="ob['prod_cd']"> -->
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" (change)="changeLine(i)" class="form-control" [(ngModel)]="ob['quantity']">
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" (change)="changeLine(i)" class="form-control" [(ngModel)]="ob['price']">
+                                </div>
+                                <div class="col-2 text-right">
+                                    <h6>{{ob['subtotal']}}</h6>
+                                    <!-- <input class="form-control" [(ngModel)]="ob['subtotal']"> -->
+                                </div>
+                                <div class="col-1">
+                                    <input class="form-control" type="number" (change)="changeLine(i)" [(ngModel)]="ob['gst']">
+                                </div>
+                                <div class="col-2 text-right">
+                                    <h6>{{ob['total']}}</h6>
+
+                                    <!-- <input class="form-control" [(ngModel)]="ob['total']"> -->
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-danger" (click)="deleteLine(i)"><i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <br>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Notes :</h5>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <button class="btn btn-primary" (click)="addNote()"><i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div *ngFor="let ob of billObj['notes']; let i = index" class="row">
+                                <div class="col-8">
+                                    <textarea class="form-control" [(ngModel)]="ob['note']"></textarea>
+                                </div>
+                                <div class="col-2 text-right">
+                                    <button class="btn btn-danger" (click)="deleteNote(i)"><i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+
+                                <br>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="updateBill()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner>Loading....</ngx-spinner>

@@ -1,0 +1,194 @@
+<div class="page-content fade-in-up">
+    <div class="row">
+        <div class="col-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Event Management</div>
+                </div>
+                <div class="ibox-body">
+                    <ul class="nav nav-tabs tabs-line">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tab-7-1" data-toggle="tab"><i class="fa fa-bar-chart"
+                                    aria-hidden="true"></i>&nbsp;All Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-2" data-toggle="tab"><i
+                                    class="fa fa-plus-circle" aria-hidden="true"></i> Create Event
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#tab-7-3" data-toggle="tab"><i
+                                    class="ti-settings"> </i> Update
+                                Event
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+
+                        <div class="tab-pane fade show active" id="tab-7-1">
+                            <br>
+                            <div class="row">
+                                <div class="col-4">
+                                    <mat-form-field style="margin-left: 2%">
+                                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="example-container">
+
+                                <table mat-table [dataSource]="datasource" matSort>
+
+
+
+                                    <ng-container matColumnDef="event_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Event Code
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.event_cd}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="event_desc">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Event Description
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.event_desc}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="event_type_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Event Type
+
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.event_type_cd}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="event_cat_cd">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Event Category
+                                        </th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+                                            {{element.event_cat_cd}} </td>
+                                    </ng-container>
+
+
+
+                                    <ng-container matColumnDef="action">
+                                        <th mat-header-cell *matHeaderCellDef class="right" mat-sort-header>Action</th>
+                                        <td mat-cell flex-stretch *matCellDef="let element" class="right">
+
+                                            <button class="btn btn-info" (click)="openUpdate(element)">Update</button>&nbsp;&nbsp;
+                                            <button class="btn btn-danger" (click)="deleteEvent(element)">Delete</button>&nbsp;&nbsp;
+
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="tab-7-2">
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Event Code</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Event Description</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Select Event Type</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_type_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Select Event Category</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_cat_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="createEvent()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab-7-3">
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Event Code</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Enter Event Description</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_desc']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Select Event Type</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_type_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-4 text-right">
+                                    <h6>Select Event Category</h6>
+                                </div>
+                                <div class="col-4">
+                                    <input class="form-control" [(ngModel)]="eventObj['event_cat_cd']">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-success" (click)="updateEvent()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<ngx-spinner>Loading....</ngx-spinner>
